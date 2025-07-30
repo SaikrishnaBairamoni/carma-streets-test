@@ -7,7 +7,7 @@ jobs:
     defaults:
       run:
         shell: bash
-    runs-on: ubuntu-latest-8-cores
+    runs-on: ubuntu-latest
     container:
       image: usdotfhwastoldev/streets_service_base_lanelet_aware:focal
       env:

@@ -25,14 +25,14 @@ jobs:
             push: true
             build-args: |
                 UBUNTU_CODENAME=${{ matrix.ubuntu-codename }}
-            tags: usdotfhwastol/streets_service_base:${{ github.ref_name	}}-${{ matrix.ubuntu-codename }}
+            tags: usdotfhwastol/streets_service_base-test:${{ github.ref_name	}}-${{ matrix.ubuntu-codename }}
             file: ./streets_service_base/Dockerfile
       - name: Docker Build Streets Service Base Lanelet Aware
         if: ${{ matrix.build_lanelet_aware }} 
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: usdotfhwastol/streets_service_base_lanelet_aware:${{ github.ref_name	}}-${{ matrix.ubuntu-codename }}
+          tags: usdotfhwastol/streets_service_base_lanelet_aware-test:${{ github.ref_name	}}-${{ matrix.ubuntu-codename }}
           file: ./streets_service_base_lanelet_aware/Dockerfile          
   build:
     needs: docker-build
@@ -41,7 +41,7 @@ jobs:
         shell: bash
     runs-on: ubuntu-latest-8-cores
     container:
-      image: usdotfhwastol/streets_service_base_lanelet_aware:${{ github.ref_name	}}-focal
+      image: usdotfhwastol/streets_service_base_lanelet_aware-test:${{ github.ref_name	}}-focal
       env:
         DEBIAN_FRONTEND: noninteractive
         SONAR_SCANNER_VERSION: "5.0.1.3006"
